@@ -27,6 +27,7 @@ export function getSideBarConfig() {
             items: [
                 'dataSet',
                 'dataSetNotificationTemplate',
+                'dataSetByOrgUnit',
             ],
         },
 
@@ -67,6 +68,7 @@ export function getSideBarConfig() {
                 'validationRule',
                 'validationRuleGroup',
                 'validationNotificationTemplate',
+                'approvalValidationRule',
             ],
         },
 
@@ -132,6 +134,10 @@ const typeDetails = {
         columns: ['displayName', 'compulsory', 'publicAccess', 'lastUpdated'],
     },
     dataSet: {
+        filters: ['formType'],
+        columns: ['displayName', 'formType', 'periodType', 'publicAccess', 'lastUpdated'],
+    },
+    dataSetByOrgUnit: {
         filters: ['formType'],
         columns: ['displayName', 'formType', 'periodType', 'publicAccess', 'lastUpdated'],
     },
@@ -231,6 +237,9 @@ const typeDetails = {
             'type',
         ]
     },
+    approvalValidationRule: {
+        columns: ['displayName', 'lastUpdated'],
+    },
 };
 
 export function getFilterFieldsForType(modelType) {
@@ -275,7 +284,7 @@ export function getDefaultFiltersForType(modelType) {
 }
 
 export function getAdditionalFieldsForType(modelType) {
-    if (typeDetails.hasOwnProperty(modelType) && 
+    if (typeDetails.hasOwnProperty(modelType) &&
         typeDetails[modelType].hasOwnProperty('additionalFields')
     ) {
         return typeDetails[modelType].additionalFields;

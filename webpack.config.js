@@ -98,6 +98,7 @@ const webpackConfig = {
       alias: {
           d2: __dirname+'/node_modules/d2',
         },
+       extensions: ['.ts', '.js', '.json'],
     },
 
     plugins: [

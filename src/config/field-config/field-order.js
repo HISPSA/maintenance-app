@@ -26,6 +26,7 @@ const fieldOrderByName = new Map([
     ]],
     ['dataElementGroupSet', [
         'name',
+        'shortName',
         'code',
         'description',
         'compulsory',
@@ -34,6 +35,7 @@ const fieldOrderByName = new Map([
     ]],
     ['category', [
         'name',
+        'shortName',
         'code',
         'description',
         'dataDimensionType',
@@ -130,6 +132,11 @@ const fieldOrderByName = new Map([
         'indicators',
         'organisationUnits',
     ]],
+    ['dataSetByOrgUnit', [
+        'name',
+        'organisationUnits',
+        'dataSetElements',        
+    ]],
     ['dataSetNotificationTemplate', [
         // Step 1
         'name', 'code', 'dataSets', 'messageTemplate',
@@ -167,6 +174,7 @@ const fieldOrderByName = new Map([
     ]],
     ['organisationUnitGroupSet', [
         'name',
+        'shortName',
         'code',
         'description',
         'compulsory',
@@ -384,7 +392,6 @@ const fieldOrderByName = new Map([
         'code',
         'description',
         'output',
-        'outputCombo',
         'periodType',
         'organisationUnitLevels',
         'generator',
@@ -482,6 +489,13 @@ const fieldOrderByName = new Map([
         'cacheStrategy',
         'type',
         'sqlQuery',
+    ]],
+    ['approvalValidationRule', [
+        'name',
+        'code',
+        'description',
+        'organisationUnitLevels',
+        'skipApprovalValidation',
     ]],
 ]);
 

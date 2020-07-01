@@ -158,7 +158,7 @@ objectActions.getObjectOfTypeByIdAndClone
     });
 
 // Standard save handler
-const specialSaveHandlers = ['legendSet', 'dataSet', 'organisationUnit', 'programRule', 'programRuleVariable'];
+const specialSaveHandlers = ['legendSet', 'dataSet', 'organisationUnit', 'programRule', 'programRuleVariable', 'dataSetByOrgUnit'];
 objectActions.saveObject
     .filter(({ data }) => !specialSaveHandlers.includes(data.modelType))
     .subscribe((action) => {
@@ -290,6 +290,56 @@ objectActions.saveObject
             }));
 
         dataSetPayload.dataSetElements = dataSetElements;
+
+        const metadataPayload = {
+            dataSets: [dataSetPayload],
+        };
+
+        try {
+            const response = await api.post('metadata', metadataPayload);
+
+            if (response.status === 'OK') {
+                complete('save_success');
+            } else {
+                const errorMessages = extractErrorMessagesFromResponse(response);
+
+                error(d2.i18n.getTranslation(
+                    'could_not_save_data_set_($$message$$)',
+                    { message: head(errorMessages) || 'Unknown error!' },
+                ));
+            }
+        } catch (e) {
+            error(d2.i18n.getTranslation('could_not_save_data_set'));
+            log.error(e);
+        }
+    });
+
+// Data set save handler - fetches a UID from the API and saves dataSetElements as well
+objectActions.saveObject
+    .filter(({ data }) => data.modelType === 'dataSetByOrgUnit')
+    .subscribe(async ({ complete, error }) => {
+        const d2 = await getInstance();
+        const api = d2.Api.getApi();
+
+        const dataSetModel = modelToEditStore.getState();
+        const dataSetPayload = getOwnedPropertyJSON(dataSetModel);
+
+        if (!dataSetPayload.id) {
+            const dataSetId = await api.get('system/uid', { limit: 1 }).then(({ codes }) => codes[0]);
+            dataSetPayload.id = dataSetId;
+        }
+
+        // const dataSetElements = Array
+        //     .from(dataSetModel.dataSetElements ? dataSetModel.dataSetElements.values() : [])
+        //     .map(({ dataSet, dataElement, ...other }) => ({
+        //         dataSet: { ...dataSet, id: dataSet.id || dataSetPayload.id },
+        //         ...other,
+        //         dataElement: {
+        //             id: dataElement.id,
+        //         },
+        //     }));
+
+        // dataSetPayload.dataSetElements = dataSetElements;
 
         const metadataPayload = {
             dataSets: [dataSetPayload],
