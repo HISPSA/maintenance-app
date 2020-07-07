@@ -20,7 +20,7 @@
     "manifest": "d2-manifest package.json build/manifest.webapp",
     "lint": "eslint ./src",
     "profile": "npm run start -- --profile",
-    "copy-ckeditor": "npx mkdirp ./build/vendor && cp -r ./node_modules/ckeditor ./build/vendor"
+    "copy-ckeditor": "mkdir .\\build\\vendor && cp -r .\\node_modules\\ckeditor .\\build\\vendor"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
