@@ -49,7 +49,27 @@ async function loadSideBarState() {
 
     return sideBarState
         .reduce((acc, sideBarCategory) => {
-            if (sideBarCategory.items.length || sideBarCategory.name === 'all') {
+            if (authorization.includes('F_DATAELEMENTS_BY_ORGANISATIONUNIT_PUBLIC_ADD') || 
+            authorization.includes('F_DATAELEMENTS_BY_ORGANISATIONUNIT_PRIVATE_ADD')){
+            if (sideBarCategory.name === 'all' || sideBarCategory.name === 'dataSetSection'){
+                acc[sideBarCategory.name] = sideBarCategory.items; // eslint-disable-line no-param-reassign
+                acc.mainSections = acc.mainSections.concat([{
+                    key: sideBarCategory.name,
+                    label: d2.i18n.getTranslation(camelCaseToUnderscores(sideBarCategory.name)),
+                }]);    
+            }          
+        }
+        else if (authorization.includes('F_APPROVAL_VALIDATIONRULE_PUBLIC_ADD') ||
+            authorization.includes('F_APPROVAL_VALIDATIONRULE_PRIVATE_ADD')) {
+            if (sideBarCategory.name === 'all' || sideBarCategory.name === 'validationSection') {
+                acc[sideBarCategory.name] = sideBarCategory.items; // eslint-disable-line no-param-reassign
+                acc.mainSections = acc.mainSections.concat([{
+                    key: sideBarCategory.name,
+                    label: d2.i18n.getTranslation(camelCaseToUnderscores(sideBarCategory.name)),
+                }]);
+            }
+        }
+        else if (sideBarCategory.items.length || sideBarCategory.name === 'all') {
                 acc[sideBarCategory.name] = sideBarCategory.items; // eslint-disable-line no-param-reassign
                 acc.mainSections = acc.mainSections.concat([{
                     key: sideBarCategory.name,
