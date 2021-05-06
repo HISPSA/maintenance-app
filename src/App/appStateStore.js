@@ -42,14 +42,25 @@ async function mapSideBarConfigToSideBarItems(sideBarConfig) {
     }), Object.keys(sideBarConfig));
 }
 
+async function getAuthorization() {
+    const authh = await getInstance()
+        .then(d2 => d2.Api.getApi().get('me/authorization'))
+        .then(authorizations => {
+            return authorizations; });
+
+    return authh;
+ 
+}
+
 async function loadSideBarState() {
     const d2 = await getInstance();
     const sideBarConfig = maintenanceModels.getSideBarConfig();
     const sideBarState = await mapSideBarConfigToSideBarItems(sideBarConfig);
+    const authorization = await getAuthorization();
 
     return sideBarState
         .reduce((acc, sideBarCategory) => {
-            if (authorization.includes('F_DATAELEMENTS_BY_ORGANISATIONUNIT_PUBLIC_ADD') || 
+        if (authorization.includes('F_DATAELEMENTS_BY_ORGANISATIONUNIT_PUBLIC_ADD') || 
             authorization.includes('F_DATAELEMENTS_BY_ORGANISATIONUNIT_PRIVATE_ADD')){
             if (sideBarCategory.name === 'all' || sideBarCategory.name === 'dataSetSection'){
                 acc[sideBarCategory.name] = sideBarCategory.items; // eslint-disable-line no-param-reassign
@@ -190,4 +201,8 @@ export function setAppState(newPartialState) {
 
 export const currentSubSection$ = appState
     .map(state => state.sideBar.currentSubSection)
+    .distinctUntilChanged();
+
+export const selectedRight$ = appState
+    .map(state => state.hierarchy.selectedRight)
     .distinctUntilChanged();
