@@ -295,8 +295,8 @@ class GroupEditor extends Component {
 
             // Use the categoryCombos associated with the section to get categories and their category options
             d2.models.categoryCombos.list({
-                //filter: `id:in:[${props.dataSetElements[0].dataElement.categoryCombo.id}]`,
-                filter: `id:in:[${props.dataSetElements[0].categoryCombo.id}]`,
+                filter: `id:in:[${props.dataSetElements[0].dataElement.categoryCombo.id}]`,
+                //filter: `id:in:[${props.dataSetElements[0].categoryCombo.id}]`,
                 paging: false,
                 fields: [
                     'id,displayName',
