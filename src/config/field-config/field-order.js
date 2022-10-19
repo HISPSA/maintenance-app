@@ -138,6 +138,11 @@ const fieldOrderByName = new Map([
         'indicators',
         'organisationUnits',
     ]],
+    ['dataSetByOrgUnit', [
+        'name',
+        'organisationUnits',
+        'dataSetElements',        
+    ]],
     ['dataSetNotificationTemplate', [
         // Step 1
         'name', 'code', 'dataSets', 'messageTemplate',
@@ -502,6 +507,13 @@ const fieldOrderByName = new Map([
         'cacheStrategy',
         'type',
         'sqlQuery',
+    ]],
+    ['approvalValidationRule', [
+        'name',
+        'code',
+        'description',
+        'organisationUnitLevels',
+        'skipApprovalValidation',
     ]],
 ]);
 
