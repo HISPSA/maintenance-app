@@ -59,9 +59,9 @@ async function loadSideBarState() {
     const authorization = await getAuthorization();
 
     return sideBarState
-        .reduce((acc, sideBarCategory) => {
-        if (authorization.includes('F_DATAELEMENTS_BY_ORGANISATIONUNIT_PUBLIC_ADD') || 
-            authorization.includes('F_DATAELEMENTS_BY_ORGANISATIONUNIT_PRIVATE_ADD')){
+        .reduce((acc, sideBarCategory) => { 
+        if ((authorization.includes('F_DATAELEMENTS_BY_ORGANISATIONUNIT_PUBLIC_ADD') || 
+            authorization.includes('F_DATAELEMENTS_BY_ORGANISATIONUNIT_PRIVATE_ADD')) && (!authorization.includes('ALL'))){
             if (sideBarCategory.name === 'all' || sideBarCategory.name === 'dataSetSection'){
                 acc[sideBarCategory.name] = sideBarCategory.items; // eslint-disable-line no-param-reassign
                 acc.mainSections = acc.mainSections.concat([{
@@ -70,8 +70,8 @@ async function loadSideBarState() {
                 }]);    
             }          
         }
-        else if (authorization.includes('F_APPROVAL_VALIDATIONRULE_PUBLIC_ADD') ||
-            authorization.includes('F_APPROVAL_VALIDATIONRULE_PRIVATE_ADD')) {
+        else if ((authorization.includes('F_APPROVAL_VALIDATIONRULE_PUBLIC_ADD') ||
+            authorization.includes('F_APPROVAL_VALIDATIONRULE_PRIVATE_ADD')) && (!authorization.includes('ALL'))) {
             if (sideBarCategory.name === 'all' || sideBarCategory.name === 'validationSection') {
                 acc[sideBarCategory.name] = sideBarCategory.items; // eslint-disable-line no-param-reassign
                 acc.mainSections = acc.mainSections.concat([{
