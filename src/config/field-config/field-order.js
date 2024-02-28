@@ -72,7 +72,6 @@ const fieldOrderByName = new Map([
     ['categoryOptionGroupSet', [
         'name',
         'shortName',
-        'code',
         'description',
         'dataDimension',
         'dataDimensionType',
@@ -139,6 +138,11 @@ const fieldOrderByName = new Map([
         'dataSetElements',
         'indicators',
         'organisationUnits',
+    ]],
+    ['dataSetByOrgUnit', [
+        'name',
+        'organisationUnits',
+        'dataSetElements',        
     ]],
     ['dataSetNotificationTemplate', [
         // Step 1
@@ -361,7 +365,6 @@ const fieldOrderByName = new Map([
         'decimals',
         'aggregationType',
         'analyticsType',
-        'orgUnitField',
         'analyticsPeriodBoundaries',
         'displayInForm',
         'legendSets',
@@ -505,6 +508,13 @@ const fieldOrderByName = new Map([
         'cacheStrategy',
         'type',
         'sqlQuery',
+    ]],
+    ['approvalValidationRule', [
+        'name',
+        'code',
+        'description',
+        'organisationUnitLevels',
+        'skipApprovalValidation',
     ]],
 ]);
 
