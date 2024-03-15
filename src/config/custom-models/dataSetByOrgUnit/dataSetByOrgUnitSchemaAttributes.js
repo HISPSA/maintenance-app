@@ -2,7 +2,7 @@
     {
         lastUpdated: '2018-08-18T20:58:10.808',
         id: 'y1kjuGaExZb',
-        href: 'http://localhost:8080/dhis/api/29/attributes/y1kjuGaExZb',
+        href: 'http://localhost:8080/dhis/api/attributes/y1kjuGaExZb',
         created: '2018-06-25T17:41:04.734',
         name: 'ERR Analysis',
         shortName: 'ERR Analysis',
@@ -68,7 +68,7 @@
     {
         lastUpdated: '2018-08-18T20:58:10.809',
         id: 'wtbDO1ZyE4e',
-        href: 'http://localhost:8080/dhis/api/29/attributes/wtbDO1ZyE4e',
+        href: 'http://localhost:8080/dhis/api/attributes/wtbDO1ZyE4e',
         created: '2016-11-15T10:09:56.422',
         name: 'eTick Register',
         shortName: 'eTick Register',

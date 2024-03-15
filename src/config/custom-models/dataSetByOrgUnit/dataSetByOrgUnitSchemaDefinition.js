@@ -4,7 +4,7 @@ const dataSetByOrgUnitSchemaDefinition = {
     translatable: true,
     metadata: true,
     identifiableObject: true,
-    apiEndpoint: 'http://localhost:8080/dhis/api/29/dataSets',
+    apiEndpoint: 'http://localhost:8080/dhis/api/dataSets',
     plural: 'dataSets',
     displayName: 'Data Set By Organisation Unit',
     name: 'dataSetByOrgUnit',

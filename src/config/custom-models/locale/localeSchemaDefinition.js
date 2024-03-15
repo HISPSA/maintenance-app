@@ -4,7 +4,7 @@ const localeSchemaDefinition = {
     translatable: false,
     metadata: false,
     identifiableObject: false,
-    apiEndpoint: 'http://localhost:8080/dhis/api/29/locales/ui',
+    apiEndpoint: 'http://localhost:8080/dhis/api/locales/ui',
     plural: 'locales',
     displayName: 'UI Locale',
     name: 'locales',
